@@ -8,7 +8,7 @@ function abrirPagina() {
     const mesa = document.querySelector("ul");
 
     for (let i = 0; i < numeroCartas; i++) {
-        mesa.innerHTML += `<li></li>`;
+        mesa.innerHTML += `<li><img src="media/front.png" alt="Papagaio"></li>`;
     }
 
 
