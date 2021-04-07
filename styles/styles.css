@@ -44,6 +44,10 @@ li img {
     height: 100px;
 }
 
+.escondido {
+    display: none;
+}
+
 @media (max-width: 800px) {
     ul {
         padding: 0;
