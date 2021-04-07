@@ -7,7 +7,15 @@ function abrirPagina() {
 
     const mesa = document.querySelector("ul");
 
-    if (numeroCartas === 4) {
+    if (numeroCartas > 3) {
+        for (let i = 0; i < 2; i++) {
+            mesa.innerHTML += `
+                <li onclick='virarCarta(this)'>
+                <img class="para-baixo" src="media/front.png" alt="Papagaio">
+                <img class="para-cima escondido" src="media/bobrossparrot.gif" alt="Papagaio bobross">
+                </li>
+            `;
+        }
         for (let i = 0; i < 2; i++) {
             mesa.innerHTML += `
                 <li onclick='virarCarta(this)'>
@@ -16,11 +24,48 @@ function abrirPagina() {
                 </li>
             `;
         }
+    } if (numeroCartas > 5) {
         for (let i = 0; i < 2; i++) {
             mesa.innerHTML += `
                 <li onclick='virarCarta(this)'>
                 <img class="para-baixo" src="media/front.png" alt="Papagaio">
-                <img class="para-cima escondido" src="media/bobrossparrot.gif" alt="Papagaio que explode">
+                <img class="para-cima escondido" src="media/fiestaparrot.gif" alt="Papagaio fiesta">
+                </li>
+            `;
+        }
+    } if (numeroCartas > 7) {
+        for (let i = 0; i < 2; i++) {
+            mesa.innerHTML += `
+                <li onclick='virarCarta(this)'>
+                <img class="para-baixo" src="media/front.png" alt="Papagaio">
+                <img class="para-cima escondido" src="media/metalparrot.gif" alt="Papagaio metal">
+                </li>
+            `;
+        }
+    } if (numeroCartas > 9) {
+        for (let i = 0; i < 2; i++) {
+            mesa.innerHTML += `
+                <li onclick='virarCarta(this)'>
+                <img class="para-baixo" src="media/front.png" alt="Papagaio">
+                <img class="para-cima escondido" src="media/revertitparrot.gif" alt="Papagaio revertit">
+                </li>
+            `;
+        }
+    } if (numeroCartas > 11) {
+        for (let i = 0; i < 2; i++) {
+            mesa.innerHTML += `
+                <li onclick='virarCarta(this)'>
+                <img class="para-baixo" src="media/front.png" alt="Papagaio">
+                <img class="para-cima escondido" src="media/tripletsparrot.gif" alt="Papagaio trigêmeos">
+                </li>
+            `;
+        }
+    } if (numeroCartas > 13) {
+        for (let i = 0; i < 2; i++) {
+            mesa.innerHTML += `
+                <li onclick='virarCarta(this)'>
+                <img class="para-baixo" src="media/front.png" alt="Papagaio">
+                <img class="para-cima escondido" src="media/unicornparrot.gif" alt="Papagaio unicórnio">
                 </li>
             `;
         }
