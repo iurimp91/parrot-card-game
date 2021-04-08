@@ -1,111 +1,40 @@
-let numeroCartas = parseInt(prompt("Com quantas cartas vocês quer jogar?"));
+let numeroCartas;
+const cartasPossiveis = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
+let cartasEscolhidas = [];
 
-while (numeroCartas < 4 || numeroCartas > 14 || numeroCartas % 2 !== 0) {
+comecarJogo();
+
+function comecarJogo() {
     numeroCartas = parseInt(prompt("Com quantas cartas vocês quer jogar?"));
+
+    while (numeroCartas < 4 || numeroCartas > 14 || numeroCartas % 2 !== 0) {
+        numeroCartas = parseInt(prompt("Com quantas cartas vocês quer jogar?"));
+    }
+
+    distribuirCartas();
 }
 
-const mesa = document.querySelector("ul");
-
-if (numeroCartas > 3) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this, 1)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/bobrossparrot.gif" alt="Papagaio bobross">
-            </li>
-        `;
-    }
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this, 2)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/explodyparrot.gif" alt="Papagaio que explode">
-            </li>
-        `;
-    }
-} if (numeroCartas > 5) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/fiestaparrot.gif" alt="Papagaio fiesta">
-            </li>
-        `;
-    }
-} if (numeroCartas > 7) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/metalparrot.gif" alt="Papagaio metal">
-            </li>
-        `;
-    }
-} if (numeroCartas > 9) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/revertitparrot.gif" alt="Papagaio revertit">
-            </li>
-        `;
-    }
-} if (numeroCartas > 11) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/tripletsparrot.gif" alt="Papagaio trigêmeos">
-            </li>
-        `;
-    }
-} if (numeroCartas > 13) {
-    for (let i = 0; i < 2; i++) {
-        mesa.innerHTML += `
-            <li onclick='virarCarta(this)'>
-            <img class="para-baixo" src="media/front.png" alt="Papagaio">
-            <img class="para-cima escondido" src="media/unicornparrot.gif" alt="Papagaio unicórnio">
-            </li>
-        `;
-    }
-}
-
-let cartas = [];
-cartas = mesa.querySelectorAll("ul li");
-let viradaAntes;
-let viradaAgora = 20;
-
-function virarCarta(elemento, numero) {
-    console.log(elemento);
-    console.log(viradaAntes);
-
+function distribuirCartas() {
+    randomizar();
+    const mesa = document.querySelector("ul");
+    
     for (let i = 0; i < numeroCartas; i++) {
-        if (cartas[i].classList.contains("virada")) {
-            viradaAgora = i;
-            console.log(cartas[viradaAgora]);
-        }
+        mesa.innerHTML += `<li>
+        <img src="media/front.png" class="face-frente">
+        <img src="media/${cartasEscolhidas[i]}parrot.gif" class="face-costas">
+        </li>`
     }
-
-    if (viradaAgora !== 20) {
-        console.log("Tem virada");
-        if (cartas[viradaAgora] === cartas[viradaAntes]) {
-            console.log("Achou");
-        }
-    }
-
-    elemento.classList.add("virada");
-    const cartaFrente = elemento.querySelector(".para-baixo");
-    cartaFrente.classList.add("escondido");
-
-    const cartaCostas = elemento.querySelector(".para-cima");
-    cartaCostas.classList.remove("escondido");
-
-    console.log(viradaAntes);
-    console.log(viradaAgora);
-
-    viradaAntes = numero;
 }
 
-//ja existe carta viarada?
-//se sim, ela é igual a que cliquei agora?
-//se não, vira as duas de volta
+function randomizar() {
+    cartasEscolhidas = cartasPossiveis.slice(0, numeroCartas / 2);
+    console.log(cartasEscolhidas);
+    cartasEscolhidas = cartasEscolhidas.concat(cartasEscolhidas);
+    console.log(cartasEscolhidas);
+    cartasEscolhidas = cartasEscolhidas.sort(comparador);
+    console.log(cartasEscolhidas);
+}
+
+function comparador() {
+    return Math.random() - 0.5;
+}

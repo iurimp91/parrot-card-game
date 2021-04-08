@@ -37,15 +37,27 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 li img {
     width: 100px;
     height: 100px;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
 
-.escondido {
-    display: none;
+.face-costas {
+    transform: rotateY(180deg);
+  }
+
+.li:hover .face-costas {
+transform: rotateY(0deg);
+}
+
+.li:hover .face-frente {
+transform: rotateY(-180deg);
 }
 
 @media (max-width: 800px) {
