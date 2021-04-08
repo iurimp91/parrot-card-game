@@ -88,7 +88,7 @@ function virarCarta(elemento, numero) {
 
     if (viradaAgora !== 20) {
         console.log("Tem virada");
-        if (cartas[0] === cartas[1]) {
+        if (cartas[viradaAgora] === cartas[viradaAntes]) {
             console.log("Achou");
         }
     }
@@ -99,6 +99,9 @@ function virarCarta(elemento, numero) {
 
     const cartaCostas = elemento.querySelector(".para-cima");
     cartaCostas.classList.remove("escondido");
+
+    console.log(viradaAntes);
+    console.log(viradaAgora);
 
     viradaAntes = numero;
 }
