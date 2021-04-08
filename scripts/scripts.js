@@ -19,9 +19,9 @@ function distribuirCartas() {
     const mesa = document.querySelector("ul");
     
     for (let i = 0; i < numeroCartas; i++) {
-        mesa.innerHTML += `<li>
-        <img src="media/front.png" class="face-frente">
-        <img src="media/${cartasEscolhidas[i]}parrot.gif" class="face-costas">
+        mesa.innerHTML += `<li class="carta">
+        <div class="face-frente face"><img src="media/front.png"></div>
+        <div class="face-costas face"><img src="media/${cartasEscolhidas[i]}parrot.gif"></div>
         </li>`
     }
 }

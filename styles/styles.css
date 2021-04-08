@@ -28,35 +28,41 @@ ul {
 li {
     width: 117px;
     height: 146px;
-    background-color: #A7E9AF;
-    border-radius: 5px;
-    border: 1px solid #99CEA8;
     margin-bottom: 34px;
     margin-right: 17px;
     margin-left: 17px;
+    position: relative;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
 
 li img {
     width: 100px;
     height: 100px;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
 }
 
 .face-costas {
     transform: rotateY(180deg);
   }
 
-.li:hover .face-costas {
+.carta:hover .face-costas {
 transform: rotateY(0deg);
 }
 
-.li:hover .face-frente {
+.carta:hover .face-frente {
 transform: rotateY(-180deg);
 }
 
