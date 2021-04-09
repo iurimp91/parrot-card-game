@@ -2,6 +2,8 @@ let numeroCartas;
 const cartasPossiveis = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
 let cartasEscolhidas = [];
 let mesa;
+let tempo = 0;
+let idRelogio;
 
 comecarJogo();
 
@@ -25,6 +27,7 @@ function distribuirCartas() {
         <div class="face-costas face"><img src="media/${cartasEscolhidas[i]}parrot.gif"></div>
         </li>`
     }
+    idRelogio = setInterval(contarSegundos, 1000);
 }
 
 function embaralhar() {
@@ -81,10 +84,6 @@ function escolha(elemento, carta) {
 
 }
 
-let tempo = 0;
-
-const idRelogio = setInterval(contarSegundos, 1000);
-
 function contarSegundos() {
     tempo++;
     const relogio = document.querySelector(".relogio");
@@ -95,13 +94,14 @@ function fimDeJogo() {
     if (cartasViradasTotal === numeroCartas) {
         clearInterval(idRelogio);
         alert(`Você ganhou com ${quantidadeJogadas} jogadas e ${tempo} segundos!`);
-        const jogarDeNovo = prompt("Você deseja jogar novamente? (Sim ou Não)");
-        while (jogarDeNovo === "" || jogarDeNovo !== "sim" || jogarDeNovo !== "s" || jogarDeNovo !== "nao" || jogarDeNovo !== "não" || jogarDeNovo !== "n") {
-            prompt("Você deseja jogar novamente? (Sim ou Não)");
+        let jogarDeNovo = "";
+        while (jogarDeNovo === "" || jogarDeNovo !== "sim" || jogarDeNovo !== "s" || jogarDeNovo !== "não" || jogarDeNovo !== "nao" || jogarDeNovo !== "n") {
+            jogarDeNovo = prompt("Você deseja jogar novamente? (Sim ou Não)");
+            console.log(jogarDeNovo);
             if (jogarDeNovo === "sim" || jogarDeNovo === "s") {
                 numeroCartas = 0;
                 cartasEscolhidas = [];
-                mesa = ""
+                mesa.innerHTML = "";
                 cartaViradaAgora = "";
                 cartaViradaAntes = "";
                 quantidadeJogadas = 0;
@@ -110,6 +110,10 @@ function fimDeJogo() {
                 cartaClicadaAntes = "";
                 tempo = 0;
                 comecarJogo();
+                return;
+            } else if (jogarDeNovo === "não" || jogarDeNovo === "nao" || jogarDeNovo === "n") {
+                alert("Obrigado por jogar!");
+                return;
             }
         }
     }
@@ -118,5 +122,5 @@ function fimDeJogo() {
 //Colocar o sort que nem o Patrick falou. OK!
 //Alterar a quantidade de jogadas para cartas viradas e não para duplas viradas. OK!
 //Ajeitar layout do relógio.
-//Fazer o bônus de perguntar se quer jogar novamente.
+//Fazer o bônus de perguntar se quer jogar novamente. OK!
 //CONSERTAR BUG DE SAIR CLICANDO QUE NEM DOIDO!
