@@ -58,11 +58,11 @@ li img {
     transform: rotateY(180deg);
   }
 
-.carta:hover .face-costas {
+.carta.virada .face-costas {
 transform: rotateY(0deg);
 }
 
-.carta:hover .face-frente {
+.carta.virada .face-frente {
 transform: rotateY(-180deg);
 }
 

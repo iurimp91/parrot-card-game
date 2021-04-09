@@ -1,6 +1,7 @@
 let numeroCartas;
 const cartasPossiveis = ["bobross", "explody", "fiesta", "metal", "revertit", "triplets", "unicorn"];
 let cartasEscolhidas = [];
+let mesa;
 
 comecarJogo();
 
@@ -15,18 +16,18 @@ function comecarJogo() {
 }
 
 function distribuirCartas() {
-    randomizar();
-    const mesa = document.querySelector("ul");
+    embaralhar();
+    mesa = document.querySelector("ul");
     
     for (let i = 0; i < numeroCartas; i++) {
-        mesa.innerHTML += `<li class="carta">
+        mesa.innerHTML += `<li class="carta" onclick="escolha(this, '${cartasEscolhidas[i]}')">
         <div class="face-frente face"><img src="media/front.png"></div>
         <div class="face-costas face"><img src="media/${cartasEscolhidas[i]}parrot.gif"></div>
         </li>`
     }
 }
 
-function randomizar() {
+function embaralhar() {
     cartasEscolhidas = cartasPossiveis.slice(0, numeroCartas / 2);
     console.log(cartasEscolhidas);
     cartasEscolhidas = cartasEscolhidas.concat(cartasEscolhidas);
@@ -37,4 +38,43 @@ function randomizar() {
 
 function comparador() {
     return Math.random() - 0.5;
+}
+
+let cartaViradaAgora = "";
+let cartaViradaAntes = "";
+let quantidadeJogadas = 0;
+let cartasViradasTotal = 0;
+let cartaClicadaAgora = "";
+let cartaClicadaAntes = "";
+
+function escolha(elemento, carta) {
+    console.log(cartaClicadaAgora);
+    console.log(cartaClicadaAntes);
+    cartaViradaAntes = cartaViradaAgora;
+    cartaViradaAgora = carta;
+    cartaClicadaAntes = cartaClicadaAgora;
+    cartaClicadaAgora = elemento;
+
+    cartaClicadaAgora.classList.add("virada");
+
+    if (cartaViradaAntes === "") {
+
+    } else if (cartaViradaAgora !== cartaViradaAntes) {
+        setTimeout(function () {
+            cartaClicadaAgora.classList.remove("virada");
+            cartaClicadaAntes.classList.remove("virada");
+            cartaViradaAgora = "";
+            cartaViradaAntes = "";
+            quantidadeJogadas++;
+        }, 1000);
+    } else {
+        cartaClicadaAgora.setAttribute("onclick", "");
+        cartaClicadaAntes.setAttribute("onclick", "");
+        quantidadeJogadas++;
+        cartasViradasTotal += 2;
+        cartaViradaAgora = "";
+        cartaViradaAntes = "";
+    }
+
+
 }
