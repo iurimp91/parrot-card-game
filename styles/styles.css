@@ -77,6 +77,12 @@ transform: rotateY(-180deg);
     ul {
         padding: 0;
     }
+
+    .relogio {
+        top: 10px;
+        right: 10px;
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 600px) {

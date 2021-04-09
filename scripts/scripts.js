@@ -32,11 +32,8 @@ function distribuirCartas() {
 
 function embaralhar() {
     cartasEscolhidas = cartasPossiveis.sort(comparador).slice(0, numeroCartas / 2);
-    console.log(cartasEscolhidas);
     cartasEscolhidas = cartasEscolhidas.concat(cartasEscolhidas);
-    console.log(cartasEscolhidas);
     cartasEscolhidas = cartasEscolhidas.sort(comparador);
-    console.log(cartasEscolhidas);
 }
 
 function comparador() {
@@ -51,8 +48,6 @@ let cartaClicadaAgora = "";
 let cartaClicadaAntes = "";
 
 function escolha(elemento, carta) {
-    console.log(cartaClicadaAgora);
-    console.log(cartaClicadaAntes);
     cartaViradaAntes = cartaViradaAgora;
     cartaViradaAgora = carta;
     cartaClicadaAntes = cartaClicadaAgora;
@@ -79,9 +74,6 @@ function escolha(elemento, carta) {
         cartaViradaAntes = "";
         fimDeJogo();
     }
-    console.log(cartasViradasTotal);
-    console.log(quantidadeJogadas);
-
 }
 
 function contarSegundos() {
@@ -97,7 +89,6 @@ function fimDeJogo() {
         let jogarDeNovo = "";
         while (jogarDeNovo === "" || jogarDeNovo !== "sim" || jogarDeNovo !== "s" || jogarDeNovo !== "não" || jogarDeNovo !== "nao" || jogarDeNovo !== "n") {
             jogarDeNovo = prompt("Você deseja jogar novamente? (Sim ou Não)");
-            console.log(jogarDeNovo);
             if (jogarDeNovo === "sim" || jogarDeNovo === "s") {
                 numeroCartas = 0;
                 cartasEscolhidas = [];
