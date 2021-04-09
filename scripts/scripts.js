@@ -46,34 +46,44 @@ let quantidadeJogadas = 0;
 let cartasViradasTotal = 0;
 let cartaClicadaAgora = "";
 let cartaClicadaAntes = "";
+let bloquearCartas = "off";
 
 function escolha(elemento, carta) {
-    cartaViradaAntes = cartaViradaAgora;
-    cartaViradaAgora = carta;
-    cartaClicadaAntes = cartaClicadaAgora;
-    cartaClicadaAgora = elemento;
 
-    cartaClicadaAgora.classList.add("virada");
 
-    if (cartaViradaAntes === "") {
-        quantidadeJogadas++;
-    } else if (cartaViradaAgora !== cartaViradaAntes) {
-        setTimeout(function () {
-            cartaClicadaAgora.classList.remove("virada");
-            cartaClicadaAntes.classList.remove("virada");
+    if (bloquearCartas === "off") {
+        cartaViradaAntes = cartaViradaAgora;
+        cartaViradaAgora = carta;
+        cartaClicadaAntes = cartaClicadaAgora;
+        cartaClicadaAgora = elemento;   
+        cartaClicadaAgora.classList.add("virada");
+        if (cartaViradaAntes === "") {
+            quantidadeJogadas++;
+        } else if (cartaViradaAgora !== cartaViradaAntes) {
+            bloquearCartas = "on";
+            setTimeout(function () {
+                cartaClicadaAgora.classList.remove("virada");
+                cartaClicadaAntes.classList.remove("virada");
+                cartaViradaAgora = "";
+                cartaViradaAntes = "";
+                quantidadeJogadas++;
+            }, 1000);
+            setTimeout(desbloqueio, 1050);
+        } else {
+            cartaClicadaAgora.setAttribute("onclick", "");
+            cartaClicadaAntes.setAttribute("onclick", "");
+            quantidadeJogadas++;
+            cartasViradasTotal += 2;
             cartaViradaAgora = "";
             cartaViradaAntes = "";
-            quantidadeJogadas++;
-        }, 1000);
-    } else {
-        cartaClicadaAgora.setAttribute("onclick", "");
-        cartaClicadaAntes.setAttribute("onclick", "");
-        quantidadeJogadas++;
-        cartasViradasTotal += 2;
-        cartaViradaAgora = "";
-        cartaViradaAntes = "";
-        fimDeJogo();
+            setTimeout(fimDeJogo, 100);
+        }
     }
+    console.log(bloquearCartas);
+}
+
+function desbloqueio() {
+    bloquearCartas = "off";
 }
 
 function contarSegundos() {
@@ -112,6 +122,6 @@ function fimDeJogo() {
 
 //Colocar o sort que nem o Patrick falou. OK!
 //Alterar a quantidade de jogadas para cartas viradas e não para duplas viradas. OK!
-//Ajeitar layout do relógio.
+//Ajeitar layout do relógio. OK!
 //Fazer o bônus de perguntar se quer jogar novamente. OK!
 //CONSERTAR BUG DE SAIR CLICANDO QUE NEM DOIDO!
