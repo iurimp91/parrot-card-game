@@ -74,7 +74,15 @@ function escolha(elemento, carta) {
         cartasViradasTotal += 2;
         cartaViradaAgora = "";
         cartaViradaAntes = "";
+        fimDeJogo();
     }
+    console.log(cartasViradasTotal);
+    console.log(quantidadeJogadas);
 
+}
 
+function fimDeJogo() {
+    if (cartasViradasTotal === numeroCartas) {
+        alert(`Você ganhou com ${quantidadeJogadas} jogadas!`);
+    }
 }
