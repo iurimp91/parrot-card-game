@@ -83,6 +83,17 @@ function escolha(elemento, carta) {
 
 function fimDeJogo() {
     if (cartasViradasTotal === numeroCartas) {
-        alert(`Você ganhou com ${quantidadeJogadas} jogadas!`);
+        clearInterval(idRelogio);
+        alert(`Você ganhou com ${quantidadeJogadas} jogadas e ${tempo} segundos!`);
     }
+}
+
+let tempo = 0;
+
+const idRelogio = setInterval(contarSegundos, 1000);
+
+function contarSegundos() {
+    tempo++;
+    const relogio = document.querySelector(".relogio");
+    relogio.innerHTML = tempo;
 }

@@ -3,13 +3,14 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-family: 'Roboto';
+    font-weight: 700;
+    color: #75B79E;
+    font-size: 56px;
+    position: relative;
 }
 
 h1 {
-    font-family: 'Roboto';
-    color: #75B79E;
-    font-size: 56px;
-    font-weight: 700;
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
@@ -64,6 +65,12 @@ transform: rotateY(0deg);
 
 .carta.virada .face-frente {
 transform: rotateY(-180deg);
+}
+
+.relogio {
+    position: absolute;
+    top: 40px;
+    right: 40px; 
 }
 
 @media (max-width: 800px) {
