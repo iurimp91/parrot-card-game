@@ -51,7 +51,7 @@ let bloquearCartas = "off";
 function escolha(elemento, carta) {
 
 
-    if (bloquearCartas === "off") {
+    if (bloquearCartas === "off" && !elemento.classList.contains("virada")) {
         cartaViradaAntes = cartaViradaAgora;
         cartaViradaAgora = carta;
         cartaClicadaAntes = cartaClicadaAgora;
@@ -67,8 +67,8 @@ function escolha(elemento, carta) {
                 cartaViradaAgora = "";
                 cartaViradaAntes = "";
                 quantidadeJogadas++;
+                bloquearCartas = "off";
             }, 1000);
-            setTimeout(desbloqueio, 1050);
         } else {
             cartaClicadaAgora.setAttribute("onclick", "");
             cartaClicadaAntes.setAttribute("onclick", "");
@@ -79,11 +79,6 @@ function escolha(elemento, carta) {
             setTimeout(fimDeJogo, 100);
         }
     }
-    console.log(bloquearCartas);
-}
-
-function desbloqueio() {
-    bloquearCartas = "off";
 }
 
 function contarSegundos() {
