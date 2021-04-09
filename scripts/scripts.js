@@ -28,7 +28,7 @@ function distribuirCartas() {
 }
 
 function embaralhar() {
-    cartasEscolhidas = cartasPossiveis.slice(0, numeroCartas / 2);
+    cartasEscolhidas = cartasPossiveis.sort(comparador).slice(0, numeroCartas / 2);
     console.log(cartasEscolhidas);
     cartasEscolhidas = cartasEscolhidas.concat(cartasEscolhidas);
     console.log(cartasEscolhidas);
@@ -58,7 +58,7 @@ function escolha(elemento, carta) {
     cartaClicadaAgora.classList.add("virada");
 
     if (cartaViradaAntes === "") {
-
+        quantidadeJogadas++;
     } else if (cartaViradaAgora !== cartaViradaAntes) {
         setTimeout(function () {
             cartaClicadaAgora.classList.remove("virada");
@@ -81,13 +81,6 @@ function escolha(elemento, carta) {
 
 }
 
-function fimDeJogo() {
-    if (cartasViradasTotal === numeroCartas) {
-        clearInterval(idRelogio);
-        alert(`Você ganhou com ${quantidadeJogadas} jogadas e ${tempo} segundos!`);
-    }
-}
-
 let tempo = 0;
 
 const idRelogio = setInterval(contarSegundos, 1000);
@@ -97,3 +90,33 @@ function contarSegundos() {
     const relogio = document.querySelector(".relogio");
     relogio.innerHTML = tempo;
 }
+
+function fimDeJogo() {
+    if (cartasViradasTotal === numeroCartas) {
+        clearInterval(idRelogio);
+        alert(`Você ganhou com ${quantidadeJogadas} jogadas e ${tempo} segundos!`);
+        const jogarDeNovo = prompt("Você deseja jogar novamente? (Sim ou Não)");
+        while (jogarDeNovo === "" || jogarDeNovo !== "sim" || jogarDeNovo !== "s" || jogarDeNovo !== "nao" || jogarDeNovo !== "não" || jogarDeNovo !== "n") {
+            prompt("Você deseja jogar novamente? (Sim ou Não)");
+            if (jogarDeNovo === "sim" || jogarDeNovo === "s") {
+                numeroCartas = 0;
+                cartasEscolhidas = [];
+                mesa = ""
+                cartaViradaAgora = "";
+                cartaViradaAntes = "";
+                quantidadeJogadas = 0;
+                cartasViradasTotal = 0;
+                cartaClicadaAgora = "";
+                cartaClicadaAntes = "";
+                tempo = 0;
+                comecarJogo();
+            }
+        }
+    }
+}
+
+//Colocar o sort que nem o Patrick falou. OK!
+//Alterar a quantidade de jogadas para cartas viradas e não para duplas viradas. OK!
+//Ajeitar layout do relógio.
+//Fazer o bônus de perguntar se quer jogar novamente.
+//CONSERTAR BUG DE SAIR CLICANDO QUE NEM DOIDO!
